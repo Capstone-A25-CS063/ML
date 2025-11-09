@@ -14,7 +14,7 @@ app = FastAPI(
 )
 
 # --- KONFIGURASI & LOAD MODEL ---
-MODEL_PATH = "models/bank_xgb_tuned.joblib"
+MODEL_PATH = "models/modelCapstoneAsahLeadScoring.joblib"
 MODEL_THRESHOLD = 0.5 
 model = None
 
