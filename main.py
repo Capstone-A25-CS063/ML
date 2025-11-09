@@ -211,7 +211,7 @@ async def predict_batch(file: UploadFile = File(...)):
             row_res = row.to_dict()
             row_res.update({
                 "PREDIKSI_REKOMENDASI": rekomendasi,
-                "SKOR_PROBABILITAS": round(prob, 4),
+                "SKOR_PROBABILITAS": float(round(float(prob), 4)),
                 "CATATAN": ", ".join(notes) if notes else "-"
             })
             results.append(row_res)
