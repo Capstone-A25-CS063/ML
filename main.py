@@ -15,7 +15,7 @@ app = FastAPI(
 
 # --- KONFIGURASI & LOAD MODEL ---
 MODEL_PATH = "models/model_bank_lead_scoring.joblib"
-MODEL_THRESHOLD = 0.5 
+MODEL_THRESHOLD = 0.27
 model = None
 
 @app.on_event("startup")
