@@ -68,15 +68,15 @@ python -m venv venv
 pip install -r requirements.txt
 
 - Isi requirements.txt:
-pandas
-numpy
-scikit-learn
-xgboost
-imbalanced-learn
-joblib
-fastapi
-uvicorn
-python-multipart
+   - pandas
+   - numpy
+   - scikit-learn
+   - xgboost
+   - imbalanced-learn
+   - joblib
+   - fastapi
+   - uvicorn
+   - python-multipart
 
 **🏃‍♂️ Cara Menjalankan Training**
 Gunakan Jupyter Notebook untuk melatih ulang model jika diperlukan.
