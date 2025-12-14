@@ -1,4 +1,5 @@
 import os
+import csv
 import joblib
 import pandas as pd
 import io
@@ -149,21 +150,33 @@ async def predict_batch(file: UploadFile = File(...)):
         raise HTTPException(status_code=503, detail="Model offline.")
 
     # 1. Validasi Format File
-    if not file.filename.endswith(('.xlsx', '.xls', '.csv')):
-        raise HTTPException(400, detail="Format file harus .xlsx atau .csv")
+    filename = file.filename.lower()
+    if not (filename.endswith('.csv') or filename.endswith('.xlsx') or filename.endswith('.xls')):
+        raise HTTPException(400, detail="Hanya terima .csv atau .xlsx")
 
     try:
         # 2. Baca File ke DataFrame
         contents = await file.read()
-        if file.filename.endswith('.csv'):
-            df_batch = pd.read_csv(io.BytesIO(contents))
+        if filename.endswith('.csv'):
+            # Coba 3 kemungkinan delimiter — pasti salah satu benar
+            for sep in [';', ',', '\t']:
+                try:
+                    temp_df = pd.read_csv(io.BytesIO(contents), sep=sep, nrows=5)
+                    if len(temp_df.columns) > 10:  # kalau kolom >10 → benar
+                        df_batch = pd.read_csv(io.BytesIO(contents), sep=sep, on_bad_lines='skip')
+                        print(f"CSV berhasil dibaca dengan separator: '{sep}'")
+                        break
+                except:
+                    continue
+            else:
+                raise HTTPException(400, detail="Gagal baca CSV — format tidak dikenali")
         else:
             df_batch = pd.read_excel(io.BytesIO(contents))
 
         # 3. Validasi Kolom Wajib (Harus ada di Excel user)
         required_columns = [
             'age', 'job', 'marital', 'education', 'default', 'housing', 'loan',
-            'contact', 'month', 'day_of_week', 'campaign', 'pdays', 'previous', 'poutcome'
+            'contact', 'month', 'day_of_week', 'campaign', 'pdays', 'previous', 'poutcome', 'duration'
         ]
         missing_cols = [col for col in required_columns if col not in df_batch.columns]
         if missing_cols:
