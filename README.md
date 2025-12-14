@@ -2,7 +2,7 @@
 
 Proyek ini adalah solusi lengkap Machine Learning untuk memprediksi potensi nasabah deposito bank. Terdiri dari dua komponen utama:
 
-**Model Training**: Eksplorasi data dan pelatihan model menggunakan XGBoost & SMOTE.
+**Model Training**: Eksplorasi data dan pelatihan model menggunakan XGBoost Classifier dengan Hyperparameter Tuning
 
 **Deployment API**: Layanan REST API berbasis FastAPI untuk prediksi real-time dan batch, dilengkapi simulasi data ekonomi otomatis.
 
@@ -23,22 +23,22 @@ Berdasarkan implementasi kode, berikut adalah struktur direktori proyek:
 ```
 /bank-marketing-project
 │
-├── 📁 models/                  # Folder penyimpanan model
-│   └── modelCapstoneAsahLeadScoring.joblib  # Model hasil training (Wajib ada untuk API)
+├── 📁 models/                               # Folder penyimpanan model
+│   └── modelCapstoneAsahLeadScoring.joblib   # Model hasil training (Wajib ada untuk API)
 │
-├── 📁 services/                # Folder modul bantuan (helper)
-│   └── economic_data.py        # Script simulasi indikator ekonomi makro
+├── 📁 services/                              # Folder modul bantuan (helper)
+│   └── economic_data.py                       # Script simulasi indikator ekonomi makro
 │
-├── bank-additional-full.csv    # Dataset mentah
-├── CapstoneAsahFinal.ipynb     # Jupyter Notebook untuk training & analisis
-├── main.py                     # Aplikasi utama (FastAPI Server)
-├── README.md                   # Dokumentasi proyek
-└── requirements.txt            # Daftar dependensi library
+├── bank-additional-full.csv              # Dataset mentah
+├── Asah_Capstone_Project_PRISM.ipynb     # Jupyter Notebook untuk training & analisis
+├── main.py                               # Aplikasi utama (FastAPI Server)
+├── README.md                             # Dokumentasi proyek
+└── requirements.txt                      # Daftar dependensi library
 ```
 
 **📊 Tentang Dataset & Model**
 - Dataset: Bank Marketing Dataset (UCI) dengan 20 fitur input + target y.
-- Preprocessing: Handling imbalance dengan SMOTE, Scaling, dan Encoding.
+- Preprocessing: Handling imbalance menggunakan parameter ```scale_pos_weight``` (native XGBoost), disertai scaling dan encoding fitur.
 - Model: XGBoost Classifier dengan Hyperparameter Tuning.
 - Performa: Fokus pada keseimbangan Precision & Recall.
 
@@ -80,7 +80,7 @@ pip install -r requirements.txt
 
 **🏃‍♂️ Cara Menjalankan Training**
 Gunakan Jupyter Notebook untuk melatih ulang model jika diperlukan.
-- Buka CapstoneAsahFinal.ipynb.
+- Buka Asah_Capstone_Project_PRISM.ipynb.
 - Jalankan semua sel ("Run All").
 - Hasil training akan disimpan. Penting: Pindahkan dan ganti nama file model hasil training ke folder models/ dengan nama modelCapstoneAsahLeadScoring.joblib agar terbaca oleh API.
 
