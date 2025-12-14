@@ -22,14 +22,17 @@ Berdasarkan implementasi kode, berikut adalah struktur direktori proyek:
 
 ```
 /bank-marketing-project
-│
+├── 📁 dataset/bank+marketing                # Folder untuk dataset mentah
+│   └── 📁 bank-additional
+|       └── 📁 bank-additional
+│           └── bank-additional-full.csv          # Dataset mentah
 ├── 📁 models/                               # Folder penyimpanan model
 │   └── modelCapstoneAsahLeadScoring.joblib   # Model hasil training (Wajib ada untuk API)
 │
 ├── 📁 services/                              # Folder modul bantuan (helper)
 │   └── economic_data.py                       # Script simulasi indikator ekonomi makro
 │
-├── bank-additional-full.csv              # Dataset mentah
+|             
 ├── Asah_Capstone_Project_PRISM.ipynb     # Jupyter Notebook untuk training & analisis
 ├── main.py                               # Aplikasi utama (FastAPI Server)
 ├── README.md                             # Dokumentasi proyek
