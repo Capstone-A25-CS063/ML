@@ -9,11 +9,12 @@ Proyek ini adalah solusi lengkap Machine Learning untuk memprediksi potensi nasa
 **📋 Daftar Isi**
 1. Struktur Proyek
 2. Tentang Dataset & Model
-3. Fitur API
-4. Teknologi
-5. Instalasi & Requirements
-6. Cara Menjalankan Training
-7. Cara Menjalankan API
+3. Model Machine Learning
+4. Fitur API
+5. Teknologi
+6. Instalasi & Requirements
+7. Cara Menjalankan Training
+8. Cara Menjalankan API
    
 
 **📂 Struktur Proyek**
@@ -44,6 +45,12 @@ Berdasarkan implementasi kode, berikut adalah struktur direktori proyek:
 - Preprocessing: Handling imbalance menggunakan parameter ```scale_pos_weight``` (native XGBoost), disertai scaling dan encoding fitur.
 - Model: XGBoost Classifier dengan Hyperparameter Tuning.
 - Performa: Fokus pada keseimbangan Precision & Recall.
+
+🔗 Model Machine Learning
+⚠️ PENTING: Untuk menjalankan API, Anda wajib memiliki file model yang sudah dilatih.
+- Unduh Model: https://github.com/Capstone-A25-CS063/ML/blob/main/models/model_bank_lead_scoring.joblib
+- Simpan File: Pindahkan file yang sudah diunduh ke dalam folder models/.
+- Pastikan Nama File: Pastikan nama filenya adalah model_bank_lead_scoring.joblib.
 
 **🚀 Fitur API**
 - Aplikasi backend (main.py) menyediakan fitur cerdas:
@@ -85,11 +92,13 @@ pip install -r requirements.txt
 Gunakan Jupyter Notebook untuk melatih ulang model jika diperlukan.
 - Buka Asah_Capstone_Project_PRISM.ipynb.
 - Jalankan semua sel ("Run All").
-- Hasil training akan disimpan. Penting: Pindahkan dan ganti nama file model hasil training ke folder models/ dengan nama modelCapstoneAsahLeadScoring.joblib agar terbaca oleh API.
+- Hasil training akan disimpan. Penting: Pindahkan dan ganti nama file model hasil training ke folder models/ dengan nama model_bank_lead_scoring.joblib agar terbaca oleh API.
 
 **🌐 Cara Menjalankan API**
 Setelah model tersedia di folder models/:
-- Jalankan file main.py
+- Jalankan server dengan perintah terminal:
+   ```bash
+   python main.py
 - Buka postman
 - Uji Coba Endpoint:
   - POST /predict: Masukkan data satu nasabah (JSON).
